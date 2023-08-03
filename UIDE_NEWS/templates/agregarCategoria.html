@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Categorias</title>
+</head>
+<body>
+    <h1>Seleccionar Método</h1>
+    <form method="post" id="metodoForm">
+        <label for="Metodos">Métodos</label>
+        <select name="Metodos" id="Metodos">
+            <option value="Get">Mostrar</option>
+            <option value="Post">Agregar</option>
+            <option value="Delete">Eliminar</option>
+            <option value="Update">Actualizar</option>
+        </select>
+        <input type="submit" value="Seleccionar">
+    </form>
+
+    <script>
+        document.getElementById("metodoForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var selectedValue = document.getElementById("Metodos").value;
+
+            if (selectedValue === "Post") {
+                var newForm = document.createElement("form");
+                newForm.action = "/agregarCategoria";
+                newForm.method = "post";
+
+                var nombreLabel = document.createElement("label");
+                nombreLabel.textContent = "Nombre:";
+                var nombreInput = document.createElement("input");
+                nombreInput.type = "text";
+                nombreInput.id = "nombre";
+                nombreInput.name = "nombre";
+                nombreInput.required = true;
+                newForm.appendChild(nombreLabel);
+                newForm.appendChild(nombreInput);
+                newForm.appendChild(document.createElement("br"));
+
+                var descripcionLabel = document.createElement("label");
+                descripcionLabel.textContent = "Descripción:";
+                var descripcionInput = document.createElement("input");
+                descripcionInput.type = "text";
+                descripcionInput.id = "descripcion";
+                descripcionInput.name = "descripcion";
+                descripcionInput.required = true;
+                newForm.appendChild(descripcionLabel);
+                newForm.appendChild(descripcionInput);
+                newForm.appendChild(document.createElement("br"));
+
+                var submitButton = document.createElement("input");
+                submitButton.type = "submit";
+                submitButton.value = "Agregar";
+                newForm.appendChild(submitButton);
+                document.body.appendChild(newForm);
+            }
+        });
+    </script>
+</body>
+</html>
